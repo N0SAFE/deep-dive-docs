@@ -83,7 +83,6 @@ export function SagaTimeline() {
       <ol className="relative space-y-2">
         {STEPS.map((s, idx) => {
           const isCurrent = idx === i;
-          const completedForward = phase === "forward" ? idx < i : idx < failAt && phase !== "forward" && idx > i;
           const isFailing = phase === "compensate" && idx === failAt - 1 && i === idx;
           const compensated = phase === "compensate" && idx > i;
           const finalCompensated = phase === "done" && failAt > 0;
