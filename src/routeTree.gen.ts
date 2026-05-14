@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as QueryBuilderRouteImport } from './routes/query-builder'
+import { Route as PrimitivesRouteImport } from './routes/primitives'
+import { Route as JoinsRouteImport } from './routes/joins'
+import { Route as ConceptsRouteImport } from './routes/concepts'
 import { Route as IndexRouteImport } from './routes/index'
 
+const QueryBuilderRoute = QueryBuilderRouteImport.update({
+  id: '/query-builder',
+  path: '/query-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrimitivesRoute = PrimitivesRouteImport.update({
+  id: '/primitives',
+  path: '/primitives',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinsRoute = JoinsRouteImport.update({
+  id: '/joins',
+  path: '/joins',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptsRoute = ConceptsRouteImport.update({
+  id: '/concepts',
+  path: '/concepts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,78 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/concepts': typeof ConceptsRoute
+  '/joins': typeof JoinsRoute
+  '/primitives': typeof PrimitivesRoute
+  '/query-builder': typeof QueryBuilderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/concepts': typeof ConceptsRoute
+  '/joins': typeof JoinsRoute
+  '/primitives': typeof PrimitivesRoute
+  '/query-builder': typeof QueryBuilderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/concepts': typeof ConceptsRoute
+  '/joins': typeof JoinsRoute
+  '/primitives': typeof PrimitivesRoute
+  '/query-builder': typeof QueryBuilderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/concepts' | '/joins' | '/primitives' | '/query-builder'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/concepts' | '/joins' | '/primitives' | '/query-builder'
+  id:
+    | '__root__'
+    | '/'
+    | '/concepts'
+    | '/joins'
+    | '/primitives'
+    | '/query-builder'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConceptsRoute: typeof ConceptsRoute
+  JoinsRoute: typeof JoinsRoute
+  PrimitivesRoute: typeof PrimitivesRoute
+  QueryBuilderRoute: typeof QueryBuilderRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/query-builder': {
+      id: '/query-builder'
+      path: '/query-builder'
+      fullPath: '/query-builder'
+      preLoaderRoute: typeof QueryBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/primitives': {
+      id: '/primitives'
+      path: '/primitives'
+      fullPath: '/primitives'
+      preLoaderRoute: typeof PrimitivesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/joins': {
+      id: '/joins'
+      path: '/joins'
+      fullPath: '/joins'
+      preLoaderRoute: typeof JoinsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts': {
+      id: '/concepts'
+      path: '/concepts'
+      fullPath: '/concepts'
+      preLoaderRoute: typeof ConceptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +127,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConceptsRoute: ConceptsRoute,
+  JoinsRoute: JoinsRoute,
+  PrimitivesRoute: PrimitivesRoute,
+  QueryBuilderRoute: QueryBuilderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
