@@ -15,6 +15,9 @@ import { Route as PrimitivesRouteImport } from './routes/primitives'
 import { Route as PeerSelectionRouteImport } from './routes/peer-selection'
 import { Route as OrchestrationRouteImport } from './routes/orchestration'
 import { Route as MutationsRouteImport } from './routes/mutations'
+import { Route as MeshStartupRouteImport } from './routes/mesh-startup'
+import { Route as MeshPeerScoringRouteImport } from './routes/mesh-peer-scoring'
+import { Route as MeshConsumerBoundaryRouteImport } from './routes/mesh-consumer-boundary'
 import { Route as LiveRouteImport } from './routes/live'
 import { Route as JoinsRouteImport } from './routes/joins'
 import { Route as ExecutionRouteImport } from './routes/execution'
@@ -55,6 +58,21 @@ const OrchestrationRoute = OrchestrationRouteImport.update({
 const MutationsRoute = MutationsRouteImport.update({
   id: '/mutations',
   path: '/mutations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeshStartupRoute = MeshStartupRouteImport.update({
+  id: '/mesh-startup',
+  path: '/mesh-startup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeshPeerScoringRoute = MeshPeerScoringRouteImport.update({
+  id: '/mesh-peer-scoring',
+  path: '/mesh-peer-scoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeshConsumerBoundaryRoute = MeshConsumerBoundaryRouteImport.update({
+  id: '/mesh-consumer-boundary',
+  path: '/mesh-consumer-boundary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LiveRoute = LiveRouteImport.update({
@@ -125,6 +143,9 @@ export interface FileRoutesByFullPath {
   '/execution': typeof ExecutionRoute
   '/joins': typeof JoinsRoute
   '/live': typeof LiveRoute
+  '/mesh-consumer-boundary': typeof MeshConsumerBoundaryRoute
+  '/mesh-peer-scoring': typeof MeshPeerScoringRoute
+  '/mesh-startup': typeof MeshStartupRoute
   '/mutations': typeof MutationsRoute
   '/orchestration': typeof OrchestrationRoute
   '/peer-selection': typeof PeerSelectionRoute
@@ -144,6 +165,9 @@ export interface FileRoutesByTo {
   '/execution': typeof ExecutionRoute
   '/joins': typeof JoinsRoute
   '/live': typeof LiveRoute
+  '/mesh-consumer-boundary': typeof MeshConsumerBoundaryRoute
+  '/mesh-peer-scoring': typeof MeshPeerScoringRoute
+  '/mesh-startup': typeof MeshStartupRoute
   '/mutations': typeof MutationsRoute
   '/orchestration': typeof OrchestrationRoute
   '/peer-selection': typeof PeerSelectionRoute
@@ -164,6 +188,9 @@ export interface FileRoutesById {
   '/execution': typeof ExecutionRoute
   '/joins': typeof JoinsRoute
   '/live': typeof LiveRoute
+  '/mesh-consumer-boundary': typeof MeshConsumerBoundaryRoute
+  '/mesh-peer-scoring': typeof MeshPeerScoringRoute
+  '/mesh-startup': typeof MeshStartupRoute
   '/mutations': typeof MutationsRoute
   '/orchestration': typeof OrchestrationRoute
   '/peer-selection': typeof PeerSelectionRoute
@@ -185,6 +212,9 @@ export interface FileRouteTypes {
     | '/execution'
     | '/joins'
     | '/live'
+    | '/mesh-consumer-boundary'
+    | '/mesh-peer-scoring'
+    | '/mesh-startup'
     | '/mutations'
     | '/orchestration'
     | '/peer-selection'
@@ -204,6 +234,9 @@ export interface FileRouteTypes {
     | '/execution'
     | '/joins'
     | '/live'
+    | '/mesh-consumer-boundary'
+    | '/mesh-peer-scoring'
+    | '/mesh-startup'
     | '/mutations'
     | '/orchestration'
     | '/peer-selection'
@@ -223,6 +256,9 @@ export interface FileRouteTypes {
     | '/execution'
     | '/joins'
     | '/live'
+    | '/mesh-consumer-boundary'
+    | '/mesh-peer-scoring'
+    | '/mesh-startup'
     | '/mutations'
     | '/orchestration'
     | '/peer-selection'
@@ -243,6 +279,9 @@ export interface RootRouteChildren {
   ExecutionRoute: typeof ExecutionRoute
   JoinsRoute: typeof JoinsRoute
   LiveRoute: typeof LiveRoute
+  MeshConsumerBoundaryRoute: typeof MeshConsumerBoundaryRoute
+  MeshPeerScoringRoute: typeof MeshPeerScoringRoute
+  MeshStartupRoute: typeof MeshStartupRoute
   MutationsRoute: typeof MutationsRoute
   OrchestrationRoute: typeof OrchestrationRoute
   PeerSelectionRoute: typeof PeerSelectionRoute
@@ -293,6 +332,27 @@ declare module '@tanstack/react-router' {
       path: '/mutations'
       fullPath: '/mutations'
       preLoaderRoute: typeof MutationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mesh-startup': {
+      id: '/mesh-startup'
+      path: '/mesh-startup'
+      fullPath: '/mesh-startup'
+      preLoaderRoute: typeof MeshStartupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mesh-peer-scoring': {
+      id: '/mesh-peer-scoring'
+      path: '/mesh-peer-scoring'
+      fullPath: '/mesh-peer-scoring'
+      preLoaderRoute: typeof MeshPeerScoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mesh-consumer-boundary': {
+      id: '/mesh-consumer-boundary'
+      path: '/mesh-consumer-boundary'
+      fullPath: '/mesh-consumer-boundary'
+      preLoaderRoute: typeof MeshConsumerBoundaryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/live': {
@@ -387,6 +447,9 @@ const rootRouteChildren: RootRouteChildren = {
   ExecutionRoute: ExecutionRoute,
   JoinsRoute: JoinsRoute,
   LiveRoute: LiveRoute,
+  MeshConsumerBoundaryRoute: MeshConsumerBoundaryRoute,
+  MeshPeerScoringRoute: MeshPeerScoringRoute,
+  MeshStartupRoute: MeshStartupRoute,
   MutationsRoute: MutationsRoute,
   OrchestrationRoute: OrchestrationRoute,
   PeerSelectionRoute: PeerSelectionRoute,
