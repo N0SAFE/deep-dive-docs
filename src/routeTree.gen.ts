@@ -9,12 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReferenceRouteImport } from './routes/reference'
 import { Route as QueryBuilderRouteImport } from './routes/query-builder'
 import { Route as PrimitivesRouteImport } from './routes/primitives'
+import { Route as PeerSelectionRouteImport } from './routes/peer-selection'
+import { Route as OrchestrationRouteImport } from './routes/orchestration'
+import { Route as MutationsRouteImport } from './routes/mutations'
+import { Route as LiveRouteImport } from './routes/live'
 import { Route as JoinsRouteImport } from './routes/joins'
+import { Route as ExecutionRouteImport } from './routes/execution'
+import { Route as ExamplesRouteImport } from './routes/examples'
+import { Route as DiscoveryRouteImport } from './routes/discovery'
 import { Route as ConceptsRouteImport } from './routes/concepts'
+import { Route as BootstrapRouteImport } from './routes/bootstrap'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ApiRouteImport } from './routes/api'
+import { Route as AggregationRouteImport } from './routes/aggregation'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ReferenceRoute = ReferenceRouteImport.update({
+  id: '/reference',
+  path: '/reference',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QueryBuilderRoute = QueryBuilderRouteImport.update({
   id: '/query-builder',
   path: '/query-builder',
@@ -25,14 +42,69 @@ const PrimitivesRoute = PrimitivesRouteImport.update({
   path: '/primitives',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PeerSelectionRoute = PeerSelectionRouteImport.update({
+  id: '/peer-selection',
+  path: '/peer-selection',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrchestrationRoute = OrchestrationRouteImport.update({
+  id: '/orchestration',
+  path: '/orchestration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MutationsRoute = MutationsRouteImport.update({
+  id: '/mutations',
+  path: '/mutations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveRoute = LiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JoinsRoute = JoinsRouteImport.update({
   id: '/joins',
   path: '/joins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExecutionRoute = ExecutionRouteImport.update({
+  id: '/execution',
+  path: '/execution',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesRoute = ExamplesRouteImport.update({
+  id: '/examples',
+  path: '/examples',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoveryRoute = DiscoveryRouteImport.update({
+  id: '/discovery',
+  path: '/discovery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConceptsRoute = ConceptsRouteImport.update({
   id: '/concepts',
   path: '/concepts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BootstrapRoute = BootstrapRouteImport.update({
+  id: '/bootstrap',
+  path: '/bootstrap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRoute = ApiRouteImport.update({
+  id: '/api',
+  path: '/api',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AggregationRoute = AggregationRouteImport.update({
+  id: '/aggregation',
+  path: '/aggregation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,50 +115,151 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aggregation': typeof AggregationRoute
+  '/api': typeof ApiRoute
+  '/auth': typeof AuthRoute
+  '/bootstrap': typeof BootstrapRoute
   '/concepts': typeof ConceptsRoute
+  '/discovery': typeof DiscoveryRoute
+  '/examples': typeof ExamplesRoute
+  '/execution': typeof ExecutionRoute
   '/joins': typeof JoinsRoute
+  '/live': typeof LiveRoute
+  '/mutations': typeof MutationsRoute
+  '/orchestration': typeof OrchestrationRoute
+  '/peer-selection': typeof PeerSelectionRoute
   '/primitives': typeof PrimitivesRoute
   '/query-builder': typeof QueryBuilderRoute
+  '/reference': typeof ReferenceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aggregation': typeof AggregationRoute
+  '/api': typeof ApiRoute
+  '/auth': typeof AuthRoute
+  '/bootstrap': typeof BootstrapRoute
   '/concepts': typeof ConceptsRoute
+  '/discovery': typeof DiscoveryRoute
+  '/examples': typeof ExamplesRoute
+  '/execution': typeof ExecutionRoute
   '/joins': typeof JoinsRoute
+  '/live': typeof LiveRoute
+  '/mutations': typeof MutationsRoute
+  '/orchestration': typeof OrchestrationRoute
+  '/peer-selection': typeof PeerSelectionRoute
   '/primitives': typeof PrimitivesRoute
   '/query-builder': typeof QueryBuilderRoute
+  '/reference': typeof ReferenceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aggregation': typeof AggregationRoute
+  '/api': typeof ApiRoute
+  '/auth': typeof AuthRoute
+  '/bootstrap': typeof BootstrapRoute
   '/concepts': typeof ConceptsRoute
+  '/discovery': typeof DiscoveryRoute
+  '/examples': typeof ExamplesRoute
+  '/execution': typeof ExecutionRoute
   '/joins': typeof JoinsRoute
+  '/live': typeof LiveRoute
+  '/mutations': typeof MutationsRoute
+  '/orchestration': typeof OrchestrationRoute
+  '/peer-selection': typeof PeerSelectionRoute
   '/primitives': typeof PrimitivesRoute
   '/query-builder': typeof QueryBuilderRoute
+  '/reference': typeof ReferenceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/concepts' | '/joins' | '/primitives' | '/query-builder'
+  fullPaths:
+    | '/'
+    | '/aggregation'
+    | '/api'
+    | '/auth'
+    | '/bootstrap'
+    | '/concepts'
+    | '/discovery'
+    | '/examples'
+    | '/execution'
+    | '/joins'
+    | '/live'
+    | '/mutations'
+    | '/orchestration'
+    | '/peer-selection'
+    | '/primitives'
+    | '/query-builder'
+    | '/reference'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/concepts' | '/joins' | '/primitives' | '/query-builder'
+  to:
+    | '/'
+    | '/aggregation'
+    | '/api'
+    | '/auth'
+    | '/bootstrap'
+    | '/concepts'
+    | '/discovery'
+    | '/examples'
+    | '/execution'
+    | '/joins'
+    | '/live'
+    | '/mutations'
+    | '/orchestration'
+    | '/peer-selection'
+    | '/primitives'
+    | '/query-builder'
+    | '/reference'
   id:
     | '__root__'
     | '/'
+    | '/aggregation'
+    | '/api'
+    | '/auth'
+    | '/bootstrap'
     | '/concepts'
+    | '/discovery'
+    | '/examples'
+    | '/execution'
     | '/joins'
+    | '/live'
+    | '/mutations'
+    | '/orchestration'
+    | '/peer-selection'
     | '/primitives'
     | '/query-builder'
+    | '/reference'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AggregationRoute: typeof AggregationRoute
+  ApiRoute: typeof ApiRoute
+  AuthRoute: typeof AuthRoute
+  BootstrapRoute: typeof BootstrapRoute
   ConceptsRoute: typeof ConceptsRoute
+  DiscoveryRoute: typeof DiscoveryRoute
+  ExamplesRoute: typeof ExamplesRoute
+  ExecutionRoute: typeof ExecutionRoute
   JoinsRoute: typeof JoinsRoute
+  LiveRoute: typeof LiveRoute
+  MutationsRoute: typeof MutationsRoute
+  OrchestrationRoute: typeof OrchestrationRoute
+  PeerSelectionRoute: typeof PeerSelectionRoute
   PrimitivesRoute: typeof PrimitivesRoute
   QueryBuilderRoute: typeof QueryBuilderRoute
+  ReferenceRoute: typeof ReferenceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reference': {
+      id: '/reference'
+      path: '/reference'
+      fullPath: '/reference'
+      preLoaderRoute: typeof ReferenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/query-builder': {
       id: '/query-builder'
       path: '/query-builder'
@@ -101,6 +274,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrimitivesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/peer-selection': {
+      id: '/peer-selection'
+      path: '/peer-selection'
+      fullPath: '/peer-selection'
+      preLoaderRoute: typeof PeerSelectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orchestration': {
+      id: '/orchestration'
+      path: '/orchestration'
+      fullPath: '/orchestration'
+      preLoaderRoute: typeof OrchestrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mutations': {
+      id: '/mutations'
+      path: '/mutations'
+      fullPath: '/mutations'
+      preLoaderRoute: typeof MutationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live': {
+      id: '/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof LiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/joins': {
       id: '/joins'
       path: '/joins'
@@ -108,11 +309,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoinsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/execution': {
+      id: '/execution'
+      path: '/execution'
+      fullPath: '/execution'
+      preLoaderRoute: typeof ExecutionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples': {
+      id: '/examples'
+      path: '/examples'
+      fullPath: '/examples'
+      preLoaderRoute: typeof ExamplesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discovery': {
+      id: '/discovery'
+      path: '/discovery'
+      fullPath: '/discovery'
+      preLoaderRoute: typeof DiscoveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/concepts': {
       id: '/concepts'
       path: '/concepts'
       fullPath: '/concepts'
       preLoaderRoute: typeof ConceptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bootstrap': {
+      id: '/bootstrap'
+      path: '/bootstrap'
+      fullPath: '/bootstrap'
+      preLoaderRoute: typeof BootstrapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api': {
+      id: '/api'
+      path: '/api'
+      fullPath: '/api'
+      preLoaderRoute: typeof ApiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aggregation': {
+      id: '/aggregation'
+      path: '/aggregation'
+      fullPath: '/aggregation'
+      preLoaderRoute: typeof AggregationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -127,10 +377,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AggregationRoute: AggregationRoute,
+  ApiRoute: ApiRoute,
+  AuthRoute: AuthRoute,
+  BootstrapRoute: BootstrapRoute,
   ConceptsRoute: ConceptsRoute,
+  DiscoveryRoute: DiscoveryRoute,
+  ExamplesRoute: ExamplesRoute,
+  ExecutionRoute: ExecutionRoute,
   JoinsRoute: JoinsRoute,
+  LiveRoute: LiveRoute,
+  MutationsRoute: MutationsRoute,
+  OrchestrationRoute: OrchestrationRoute,
+  PeerSelectionRoute: PeerSelectionRoute,
   PrimitivesRoute: PrimitivesRoute,
   QueryBuilderRoute: QueryBuilderRoute,
+  ReferenceRoute: ReferenceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
