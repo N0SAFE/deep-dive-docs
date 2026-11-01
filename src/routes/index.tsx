@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, H2, P, UL } from "@/components/doc/Prose";
 import { Callout } from "@/components/doc/Callout";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { MeshTopology } from "@/components/interactive/MeshTopology";
+import { MeshQueryEngine } from "@/components/interactive/MeshQueryEngine";
+import { CoreSyncSystem } from "@/components/interactive/CoreSyncSystem";
 import { ArrowRight, Network, Database, Workflow, Radio, Shield } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -86,12 +87,20 @@ function Index() {
   .limit(50);`}
       />
 
-      <H2 id="topology">A live mesh, in one picture</H2>
+      <H2 id="topology">Mesh Query Engine</H2>
       <P>
-        Sliders below change the fleet size and latency budget. Watch the chosen peers (lit edges from the
-        center node) reorganize as the topology grows or constraints tighten.
+        A full state machine drives every query through composing → validating → planning → routing →
+        executing → streaming. Nodes join, leave, and degrade in real time. Use the query builder to send
+        requests through the live topology, inject failures, and watch the mesh recover.
       </P>
-      <MeshTopology />
+      <MeshQueryEngine />
+
+      <H2 id="scenarios">Core Sync System Scenarios</H2>
+      <P>
+        The interactive visualizations below demonstrate how multi-server mesh synchronization handles
+        fleet connectivity, user/org ownership gates, owner-node discovery, and failover pathways natively.
+      </P>
+      <CoreSyncSystem />
 
       <H2 id="how">How to read this doc</H2>
       <P>

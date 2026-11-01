@@ -55,6 +55,7 @@ export const DOC_NAV: DocSection[] = [
   {
     group: "Reference",
     items: [
+      { to: "/interactive-examples", title: "Interactive Demos", blurb: "A giant playground highlighting core functionalities natively" },
       { to: "/examples", title: "End-to-end examples" },
       { to: "/reference", title: "Files, order, invariants" },
     ],

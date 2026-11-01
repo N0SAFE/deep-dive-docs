@@ -20,6 +20,7 @@ import { Route as MeshPeerScoringRouteImport } from './routes/mesh-peer-scoring'
 import { Route as MeshConsumerBoundaryRouteImport } from './routes/mesh-consumer-boundary'
 import { Route as LiveRouteImport } from './routes/live'
 import { Route as JoinsRouteImport } from './routes/joins'
+import { Route as InteractiveExamplesRouteImport } from './routes/interactive-examples'
 import { Route as ExecutionRouteImport } from './routes/execution'
 import { Route as ExamplesRouteImport } from './routes/examples'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
@@ -85,6 +86,11 @@ const JoinsRoute = JoinsRouteImport.update({
   path: '/joins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InteractiveExamplesRoute = InteractiveExamplesRouteImport.update({
+  id: '/interactive-examples',
+  path: '/interactive-examples',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExecutionRoute = ExecutionRouteImport.update({
   id: '/execution',
   path: '/execution',
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/discovery': typeof DiscoveryRoute
   '/examples': typeof ExamplesRoute
   '/execution': typeof ExecutionRoute
+  '/interactive-examples': typeof InteractiveExamplesRoute
   '/joins': typeof JoinsRoute
   '/live': typeof LiveRoute
   '/mesh-consumer-boundary': typeof MeshConsumerBoundaryRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/discovery': typeof DiscoveryRoute
   '/examples': typeof ExamplesRoute
   '/execution': typeof ExecutionRoute
+  '/interactive-examples': typeof InteractiveExamplesRoute
   '/joins': typeof JoinsRoute
   '/live': typeof LiveRoute
   '/mesh-consumer-boundary': typeof MeshConsumerBoundaryRoute
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/discovery': typeof DiscoveryRoute
   '/examples': typeof ExamplesRoute
   '/execution': typeof ExecutionRoute
+  '/interactive-examples': typeof InteractiveExamplesRoute
   '/joins': typeof JoinsRoute
   '/live': typeof LiveRoute
   '/mesh-consumer-boundary': typeof MeshConsumerBoundaryRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/examples'
     | '/execution'
+    | '/interactive-examples'
     | '/joins'
     | '/live'
     | '/mesh-consumer-boundary'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/examples'
     | '/execution'
+    | '/interactive-examples'
     | '/joins'
     | '/live'
     | '/mesh-consumer-boundary'
@@ -254,6 +265,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/examples'
     | '/execution'
+    | '/interactive-examples'
     | '/joins'
     | '/live'
     | '/mesh-consumer-boundary'
@@ -277,6 +289,7 @@ export interface RootRouteChildren {
   DiscoveryRoute: typeof DiscoveryRoute
   ExamplesRoute: typeof ExamplesRoute
   ExecutionRoute: typeof ExecutionRoute
+  InteractiveExamplesRoute: typeof InteractiveExamplesRoute
   JoinsRoute: typeof JoinsRoute
   LiveRoute: typeof LiveRoute
   MeshConsumerBoundaryRoute: typeof MeshConsumerBoundaryRoute
@@ -369,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoinsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interactive-examples': {
+      id: '/interactive-examples'
+      path: '/interactive-examples'
+      fullPath: '/interactive-examples'
+      preLoaderRoute: typeof InteractiveExamplesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/execution': {
       id: '/execution'
       path: '/execution'
@@ -445,6 +465,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoveryRoute: DiscoveryRoute,
   ExamplesRoute: ExamplesRoute,
   ExecutionRoute: ExecutionRoute,
+  InteractiveExamplesRoute: InteractiveExamplesRoute,
   JoinsRoute: JoinsRoute,
   LiveRoute: LiveRoute,
   MeshConsumerBoundaryRoute: MeshConsumerBoundaryRoute,
